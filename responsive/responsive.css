@@ -1,1 +1,35 @@
-jjf
+.garfield { width:600px; height:398px; 
+background:url(garfield.gif) 0 0px;}
+
+@media screen 
+  and (max-width: 600px)
+  and (min-width: 500px) {
+    .garfield { width:100px; height:100px; 
+    background:url(garfield.gif) 0 0px;}
+}
+
+
+@media only screen and (max-width: 500px) {
+    .garfield {
+        background-color: lightblue;
+    }
+} 
+
+
+/* ----------- Non-Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+}
+
+
+
+
+/* ----------- Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
+}
