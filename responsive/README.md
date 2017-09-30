@@ -29,11 +29,11 @@ Last Updated: September 29, 2017
     *  if the browser screen width is less than or equal to 600 pixels, 
        display the last image, bottom-right.
 
-# To be implemented:
+# Implemented:
   responsive.css
 
 # Hours spent on Learning, Designing & Implementing
-  2 hours
+  3 hours
 
 # Credits
-  I received no help on this assignment.hhh
+  I received no help on this assignment
