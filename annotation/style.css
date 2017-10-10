@@ -1,0 +1,16 @@
+body {
+        text-align: center;
+        font-size: 24px;
+        background-color: #f0ffff; /* Azure */
+        padding-top: 50px;
+        padding-bottom: 50px;
+        margin-left: 25%;
+        margin-right: 25%;
+}
+
+.lyrics {
+        font-family: Helvetica;
+        color: red;
+        text-align: center;
+        padding-top: 50px;
+}
