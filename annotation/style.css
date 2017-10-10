@@ -8,9 +8,10 @@ body {
         margin-right: 25%;
 }
 
-.lyrics {
+#lyrics {
+
         font-family: Helvetica;
         color: red;
         text-align: center;
-        padding-top: 50px;
+        padding-top: 10px;
 }
