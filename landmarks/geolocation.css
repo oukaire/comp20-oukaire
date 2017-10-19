@@ -1,0 +1,9 @@
+body {
+        text-align: center;
+        display: block;
+}
+
+#location {
+        color: purple;
+        font-family: Helvetica;
+}
