@@ -11,28 +11,28 @@
         var myLng = 0;
         var xhr = new XMLHttpRequest();
         var me  = new google.maps.LatLng(myLat, myLng);
+        var infoWindow = new google.maps.InfoWindow();
         var myOptions = {
-            zoom: 13,
+            zoom: 14,
             center: me,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         var iconPpl = {
-            url: 'icons/06.png',
-            size:   new google.maps.Size(30, 30),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(0, 30)
+            url: 'icons/pins.png',
+            size:   new google.maps.Size(24, 24),
+            origin: new google.maps.Point(0, 72),
+            anchor: new google.maps.Point(0, 96)
         };
         var iconLmk = {
-            url: 'icons/04.jpg',
-            size:   new google.maps.Size(30, 30),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(0, 30)
+            url: 'icons/pins.png',
+            size:   new google.maps.Size(24, 22),
+            origin: new google.maps.Point(0, 25),
+            anchor: new google.maps.Point(0, 48)
         };
         var map; 
         var myMarker;                      
         var markerPpl;
         var markerLmks;
-        var infoWindow = new google.maps.InfoWindow();
 
         function initMap()
         {
@@ -100,16 +100,15 @@
                         });
                     });
 
-                   // displayLmks(data.landmarks);
+                    displayLmks(data.landmarks, markerLmks, iconLmk);
                 }
             }
 
             xhr.onreadystatechange = callback;
             xhr.send("login=SrmNO5wg&lat=" + myLat + "&lng=" + myLng);
         }
-/*
+
         function displayLmks(data, marker, marker_icn) {
-            console.log(data);
             data.forEach(function (elem) {
                 pos = new google.maps.LatLng(elem.geometry.coordinates[1], elem.geometry.coordinates[0]);
                 dst = google.maps.geometry.spherical.computeDistanceBetween(me, pos);
@@ -117,15 +116,17 @@
                     position: pos,
                     icon: iconLmk,
                     map: map,
-                    title: elem.properties.Location_Name + "<br>distance from me: " + dst + " meters</br>"        
+                    title: elem.properties.Location_Name + "<br>distance from me: " + dst + " meters</br>",
+                    map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'       
                 });
                 markerLmks.setMap(map);
 
-                google.maps.event.addListener(markerPpl, 'click', function() {
+                google.maps.event.addListener(markerLmks, 'click', function() {
                     infoWindow.setContent(this.title);
                     infoWindow.open(map, this); 
+                });
             });
-        } */
+        }
     </script>
 </head>
         
