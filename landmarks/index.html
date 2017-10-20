@@ -9,6 +9,7 @@
     <script>
         var myLat = 0;
         var myLng = 0;
+        var myDst = "";
         var xhr = new XMLHttpRequest();
         var me  = new google.maps.LatLng(myLat, myLng);
         var infoWindow = new google.maps.InfoWindow();
@@ -68,7 +69,7 @@
             myMarker.setMap(map);
 
             google.maps.event.addListener(myMarker, 'click', function() {
-                infoWindow.setContent(myMarker.title);
+                infoWindow.setContent(myMarker.title + myDst);
                 infoWindow.open(map, myMarker);
             });
             displayOthers();
@@ -90,7 +91,7 @@
                             position: pos,
                             icon: iconPpl,
                             map: map,
-                            title: person.login + "<br>distance from me: " + dst + " meters</br>"        
+                            title: person.login + "<br>distance from me: " + dst + "meters</br>"        
                         });
                         markerPpl.setMap(map);
 
@@ -109,15 +110,25 @@
         }
 
         function displayLmks(data, marker, marker_icn) {
+            var count = 0;
             data.forEach(function (elem) {
                 pos = new google.maps.LatLng(elem.geometry.coordinates[1], elem.geometry.coordinates[0]);
                 dst = google.maps.geometry.spherical.computeDistanceBetween(me, pos);
+
+                if (count == 0) {
+                    myDst = dst;
+                    count++;
+                }
+                if (myDst > dst) {
+                    myDst = dst;
+                }
+
                 markerLmks = new google.maps.Marker({
                     position: pos,
                     icon: iconLmk,
                     map: map,
                     title: elem.properties.Location_Name + "<br>distance from me: " + dst + " meters</br>",
-                    map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'       
+                    map_icon_label: '<span class="map-icon"></span>'       
                 });
                 markerLmks.setMap(map);
 
