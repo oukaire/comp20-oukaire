@@ -40,7 +40,7 @@ function renderMap()
         // Create a marker
         marker = new google.maps.Marker({
                 position: me,
-                title: "Here I Am!"
+                title: "Here I Am! "
         });
         marker.setMap(map);
                 

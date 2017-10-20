@@ -8,3 +8,25 @@ html, body {
         width: 100%;
         height: 100%;
 }
+
+/*
+.markerppl, .markerlmk { 
+        width:256px; height:256px; 
+}
+
+.markerppl {
+        background:url(icons.gif) 0px 0px;
+}
+
+.markerlmk {
+        background:url(icons.gif) 0px -768px;
+}
+*/
+
+.infowindows {
+        text-align: left;
+}
+
+.markers {
+        background-color: yellow;
+}
