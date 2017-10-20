@@ -10,16 +10,16 @@ html, body {
 }
 
 /*
-.markerppl, .markerlmk { 
-        width:256px; height:256px; 
+.markerPpl, .markerLmk { 
+        width:24px; height:24px; 
 }
 
-.markerppl {
+.markerPpl {
         background:url(icons.gif) 0px 0px;
 }
 
-.markerlmk {
-        background:url(icons.gif) 0px -768px;
+.markerLmk {
+        background:url(icons.gif) 0px -24px;
 }
 */
 

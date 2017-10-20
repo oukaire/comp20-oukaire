@@ -1,6 +1,7 @@
 var myLat = 0;
 var myLng = 0;
 var myDst = "";
+var nearestLmk = "";
 var xhr = new XMLHttpRequest();
 var me  = new google.maps.LatLng(myLat, myLng);
 var infoWindow = new google.maps.InfoWindow();
@@ -60,7 +61,7 @@ function displayMe() {
     myMarker.setMap(map);
 
     google.maps.event.addListener(myMarker, 'click', function() {
-        infoWindow.setContent(myMarker.title + meterstomiles(myDst));
+        infoWindow.setContent(myMarker.title + nearestLmk +  "<br>" + meterstomiles(myDst));
         infoWindow.open(map, myMarker);
     });
     displayOthers();
@@ -108,17 +109,19 @@ function displayLmks(data, marker, marker_icn) {
 
         if (count == 0) {
             myDst = dst;
+            nearestLmk = elem.properties.Location_Name;
             count++;
         }
         if (myDst > dst) {
             myDst = dst;
+            nearestLmk = elem.properties.Location_Name;
         }
 
         markerLmks = new google.maps.Marker({
             position: pos,
             icon: iconLmk,
             map: map,
-            title: elem.properties.Location_Name + "<br>distance away: " + meterstomiles(dst) + "</br>",
+            title: elem.properties.Details,
             map_icon_label: '<span class="map-icon"></span>'       
         });
         markerLmks.setMap(map);
