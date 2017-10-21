@@ -9,20 +9,6 @@ html, body {
         height: 100%;
 }
 
-/*
-.markerPpl, .markerLmk { 
-        width:24px; height:24px; 
-}
-
-.markerPpl {
-        background:url(icons.gif) 0px 0px;
-}
-
-.markerLmk {
-        background:url(icons.gif) 0px -24px;
-}
-*/
-
 .infowindows {
         text-align: left;
 }
