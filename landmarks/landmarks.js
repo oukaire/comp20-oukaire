@@ -2,6 +2,8 @@ var myLat = 0;
 var myLng = 0;
 var myDst = "";
 var nearestLmk = "";
+var nearestLat = myLat;
+var nearestLng = myLng;
 var xhr = new XMLHttpRequest();
 var me  = new google.maps.LatLng(myLat, myLng);
 var infoWindow = new google.maps.InfoWindow();
@@ -63,6 +65,19 @@ function displayMe() {
     google.maps.event.addListener(myMarker, 'click', function() {
         infoWindow.setContent(myMarker.title + nearestLmk +  "<br>" + meterstomiles(myDst));
         infoWindow.open(map, myMarker);
+
+        var nearestLmkPathCoordinates = [
+            {lat: myLat, lng: myLng},
+            {lat: nearestLat, lng: nearestLng}
+        ];
+        var nearestLmkPath = new google.maps.Polyline({
+            path: nearestLmkPathCoordinates,
+            geodesic: true,
+            strokeColor: '#000000', /* black */
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        });
+        nearestLmkPath.setMap(map);
     });
     displayOthers();
 }
@@ -110,11 +125,13 @@ function displayLmks(data, marker, marker_icn) {
         if (count == 0) {
             myDst = dst;
             nearestLmk = elem.properties.Location_Name;
+            updateNeareastLmkLatLng(elem.geometry.coordinates[1], elem.geometry.coordinates[0]);
             count++;
         }
         if (myDst > dst) {
             myDst = dst;
             nearestLmk = elem.properties.Location_Name;
+            updateNeareastLmkLatLng(elem.geometry.coordinates[1], elem.geometry.coordinates[0]);
         }
 
         markerLmks = new google.maps.Marker({
@@ -131,4 +148,10 @@ function displayLmks(data, marker, marker_icn) {
             infoWindow.open(map, this); 
         });
     });
+}
+
+function updateNeareastLmkLatLng(lat, lng)
+{
+    nearestLat = lat;
+    nearestLng = lng;
 }
