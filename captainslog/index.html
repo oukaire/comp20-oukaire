@@ -8,8 +8,22 @@
     <link rel="stylesheet" href="style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
-        // get date with js Date
-        document.getElementById("msg").innerHTML="su[p";
+        var date = Date.now();
+
+        $(document).ready(function(){
+            console.log(date);
+            
+            /* add listener, or onclick() */
+            message = document.getElementById("msg").value;
+            toLog = document.getElementById("log");
+
+            newElem = document.createElement("p");
+            newElem.innerHTML = '<p><span class="message">' + message + " #FML</span></p>";
+            toLog.insertBefore(newElem, toLog.childNodes[0]);
+            document.getElementById("msg").value = "";
+
+
+        });
     </script>
 </head>
 
