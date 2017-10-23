@@ -1,10 +1,10 @@
-
+*here*
         **README.md** file
-        __by Onyinyechi Ukaire, October 22, 2017__
+        _by Onyinyechi Ukaire, October 22, 2017_
 
         captainslog stores new entries, displaying the latest entry first
 
-# Overview
+## Overview
 
 Lab 5 on Captain's Log, using jQuery:
   * `index.html` - displays and records Captain's log - new entries
