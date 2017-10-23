@@ -1,8 +1,7 @@
-*here*
-        **README.md** file
-        _by Onyinyechi Ukaire, October 22, 2017_
+**README.md** file
+ _by Onyinyechi Ukaire, October 22, 2017_
 
-        captainslog stores new entries, displaying the latest entry first
+  captainslog stores new entries, displaying the latest entry first
 
 ## Overview
 
