@@ -1,5 +1,6 @@
 *README.md* file
-_by Onyinyechi Ukaire_, October 22, 2017
+_by Onyinyechi Ukaire_  
+Last modified: October 22, 2017
 
   captainslog stores new entries, displaying the latest entry first
 
