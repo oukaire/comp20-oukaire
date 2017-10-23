@@ -1,6 +1,6 @@
 
         **README.md** file
-        _by Onyinyechi Ukaire, October 22, 2017_
+        __by Onyinyechi Ukaire, October 22, 2017__
 
         captainslog stores new entries, displaying the latest entry first
 
@@ -15,4 +15,4 @@ Lab 5 on Captain's Log, using jQuery:
   * redisplay message from local storage on returning to the page
 
 ## Collaboration
-  > Got ideas from examples at [GitHub](https://github.com/tuftsdev/WebProgramming/tree/gh-pages/examples)
+  > Got ideas from [Ming's Examples](https://github.com/tuftsdev/WebProgramming/tree/gh-pages/examples)
