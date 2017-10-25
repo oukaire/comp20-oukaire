@@ -8,32 +8,22 @@
     <link rel="stylesheet" href="style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
-        var date = Date.now(); // localStorage[new Date().getTime()] = txt;
+         // localStorage[new Date().getTime()] = txt;
 
-        $(document).ready(function(){
-            console.log(date);
-            
-            /* add listener, or onclick() */
-            message = document.getElementById("msg").value;
-            toLog = document.getElementById("log");
+        $(document).ready(function() {
 
-            newElem = document.createElement("p");
-            newElem.innerHTML = '<p><span class="message">' + message + " #FML</span></p>";
-            toLog.insertBefore(newElem, toLog.childNodes[0]);
-            document.getElementById("msg").value = "";
+            $('#msg').on('change', function () {
+                date = new Date() + ' - ';
+                message = document.getElementById('msg').value;
+                toLog = document.getElementById('log');
 
+                newElem = document.createElement("p");
+                newElem.innerHTML = '<p>' + date + message + '</p>';
+                toLog.insertBefore(newElem, toLog.childNodes[0]);
 
-            /* instead of 'click', perhaps 'return'
-            $("#go").click(function(){
-                $("#block").animate({
-                    width: "90%",
-                    opacity: 0.4,
-                    marginLeft: "0in",
-                    fontSize: "3em",
-                    borderWidth: "10px"
-                }, 1500);
-            }); */
-
+                (localStorage | sessionStorage).setItem()
+                (localStorage | sessionStorage).getItem()
+            });
         });
     </script>
 </head>
