@@ -1,4 +1,5 @@
 html {
+        margin-left: 5%;
         height: 100%;
         width: 100%;
 }
@@ -10,8 +11,10 @@ body {
 
 #msg {
         color: red;
+        font-family: Courier New, Arial; 
 }
 
 #log {
         color: green;
+        font-family: Heletica, Georgia;
 }

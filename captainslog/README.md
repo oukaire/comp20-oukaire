@@ -6,7 +6,7 @@ Last modified: October 22, 2017
 
 ## Overview
 
-Lab 5 on Captain's Log, using jQuery:
+Lab 6 on Captain's Log, using jQuery:
   * `index.html` - displays and records Captain's log - new entries
   * `style.css`  - style sheet for my entries
 

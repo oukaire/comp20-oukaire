@@ -7,19 +7,32 @@
     <title>Captain's Log</title>
     <link rel="stylesheet" href="style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="entries.js"></script>
     <script>
+        function formatEntry(date, message) {
+            return date + ' - ' + message + '<br>';
+        }
+
+        function loadEntries() {
+            for (key in localStorage) {
+                $('#log').prepend(formatEntry(key, localStorage.getItem(key)));
+            }
+        }
+
         $(document).ready(function() {
+            count = 1; /* keeps track of number of items in list */
 
             $('#msg').on('change', function () {
                 date = new Date();
                 message = $('#msg').val();
-                localStorage.setItem(date, message);
 
-                for (key in localStorage) {
-                    localStorage.getItem(key);
+                if (count == 1) { /* load only once */
+                    loadEntries(); 
                 }
+                localStorage.setItem(date, message);
+                count++;
 
-                $('#log').prepend(date + ' - ' + message + '<br>');
+                $('#log').prepend(formatEntry(date, message));
                 $('#msg').val(''); /* clear input field */
             });
         });
