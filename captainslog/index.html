@@ -8,21 +8,19 @@
     <link rel="stylesheet" href="style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
-         // localStorage[new Date().getTime()] = txt;
-
         $(document).ready(function() {
+
+            $('#log').html(''); /* start reading from scratch */
 
             $('#msg').on('change', function () {
                 date = new Date() + ' - ';
                 message = document.getElementById('msg').value;
-                toLog = document.getElementById('log');
+                localStorage.setItem(date, message);
 
-                newElem = document.createElement("p");
-                newElem.innerHTML = '<p>' + date + message + '</p>';
-                toLog.insertBefore(newElem, toLog.childNodes[0]);
-
-                (localStorage | sessionStorage).setItem()
-                (localStorage | sessionStorage).getItem()
+                for (key in localStorage) {
+                    $('#log').prepend('<br>' + key + localStorage.getItem(key) + '</br>');
+                }
+                $('#msg').value = ''; /* clear msg input */
             });
         });
     </script>

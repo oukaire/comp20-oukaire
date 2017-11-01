@@ -10,7 +10,9 @@ Lab 5 on Captain's Log, using jQuery:
   * `index.html` - displays and records Captain's log - new entries
   * `style.css`  - style sheet for my entries
 
-## To be Implemented
+## Implemented
+  * index.html and style.css
+  * date
   * "log" section with the latest message first
   * redisplay message from local storage on returning to the page
 
