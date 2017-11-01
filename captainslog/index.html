@@ -10,17 +10,17 @@
     <script>
         $(document).ready(function() {
 
-            $('#log').html(''); /* start reading from scratch */
-
             $('#msg').on('change', function () {
-                date = new Date() + ' - ';
-                message = document.getElementById('msg').value;
+                date = new Date();
+                message = $('#msg').val();
                 localStorage.setItem(date, message);
 
                 for (key in localStorage) {
-                    $('#log').prepend('<br>' + key + localStorage.getItem(key) + '</br>');
+                    localStorage.getItem(key);
                 }
-                $('#msg').value = ''; /* clear msg input */
+
+                $('#log').prepend(date + ' - ' + message + '<br>');
+                $('#msg').val(''); /* clear input field */
             });
         });
     </script>
