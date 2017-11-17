@@ -83,7 +83,7 @@ function displayMe() {
 }
 
 function displayOthers() {
-    xhr.open("POST", "https://defense-in-derpth.herokuapp.com/sendLocation", true);
+    xhr.open("POST", "https://landmarkz.herokuapp.com/sendLocation", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     function callback () {
