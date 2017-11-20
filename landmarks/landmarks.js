@@ -87,7 +87,7 @@ function displayOthers() {
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     function callback () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
+        if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
             rawData = xhr.responseText;
             data    = JSON.parse(rawData);
             
