@@ -9,7 +9,7 @@
 
   <div id="introduction">
       <h3>Introduction</h3>
-      <p>Historic Landmarks is a web application that renders a map to clients, displaying landmarks within a mile's radius and people checked in via the app. Historic Landmarks has both client-side and server-side ends. Currently, it serves the New England region, ranging from Connecticut to New Hampshire. As a hired security consultant, I resolved three major security and privacy issues in the applications, and I document those issues on this page.</p>
+      <p>Historic Landmarks is a web application that renders a map to clients, displaying landmarks within a mile's radius and people checked in via the app. Historic Landmarks has both client-side and <a href="https://fathomless-eyrie-97751.herokuapp.com/">server-side</a> ends. Currently, it serves the New England region, ranging from Connecticut to New Hampshire. As a hired security consultant, I resolved three major security and privacy issues in the applications, and I document those issues on this page.</p>
   </div>
   <div id="methodology">
     <h3>Methodology</h3> 
@@ -22,20 +22,22 @@
   <div id ="issues">
     <h3>Issues Found</h3> 
     <ul>
-        <li>Issue: </li>
-        <li>Location or page where issue was found:</li>
-        <li>Severity of Issue</li>
-        <li>Description of issue</li>
-        <li>Proof of vulnerability</li>
-        <li>Resolution:</li>
+        <li>Issue: Cross Site Scripting (XSS)</li>
+        <li>Location or page where issue was found: "'/sendLocation'" post route on <a href="https://fathomless-eyrie-97751.herokuapp.com/">server</a></li>
+        <li>Severity of Issue: High. XSS presents users with all sorts of fraudulent web content including malicous code injection and unwanted messages. Significant amount of data stored as cookies can also be stolen.</li>
+        <li>Description of issue: An attacker inputs data to execute a certain javascript function. For example, the shell command, <div id="sh">$ curl --data "login=&ltscript&gtalert('XSS ATTACK');&lt/script&gt&lat=10&lng=10" https://fathomless-eyrie-97751.herokuapp.com/sendLocation"</div> alerts clients contrary to the app's purpose.</li>
+        <li>Proof of vulnerability: <img src="xx1.gif" alt="XXS"/></li>
+        <li>Resolution: Change &lt to "&lt" and &gt to "&gt". Alternatively, all special characters can be removed via the following command: in the example above, assuming "var login" holds login data, <div id="fix1">"$ login.replace(/[^\w\s]/gi, '');"</div></li>
     </ul>
     <ul>
-        <li>Issue: </li>
-        <li>Location or page where issue was found:</li>
-        <li>Severity of Issue</li>
-        <li>Description of issue</li>
-        <li>Proof of vulnerability</li>
-        <li>Resolution:</li>
+
+        <li>Issue: Mongo Database Injection and Client Security</li>
+        <li>Location or page where issue was found: "'/checkins.json'" get route on <a href="https://fathomless-eyrie-97751.herokuapp.com/">server</a></li>
+        <li>Severity of Issue: High. A database injection significantly impacts credibility that could lead to getting sued.</li>
+        <li>Description of issue: After I made a legitimate checkin into the web app via the login "oxy01", I searched for a login information via get using "login[$ne]=oxy01" and I got other clients'
+ data</li>
+        <li>Proof of vulnerability: <img src="mongodb_injection.gif" alt="XXS"/></li>
+        <li>Resolution: "REPLACE CHARs PERHAPS"</li>
     </ul>
   </div>
   <div id="conclusion">
