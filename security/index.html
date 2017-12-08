@@ -21,7 +21,7 @@
   </div>
   <div id="abstract">
     <h3>Abstract of Findings</h3> 
-    <p>Historic Landmarks is suceptible to injection attacks. Hackers are able hijack the app for other corrupt purposes by sending data to the app servers. Also, Historic Landmarks violates privacy concerns, displaying latitude and longitude data of clients on its home page.</p> 
+    <p>Historic Landmarks is suceptible to injection attacks. Hackers are able hijack the app for other corrupt purposes by sending data to the app servers. In addition, the app violates privacy concerns by displaying clients' latitude and longitude data without permission. Furthermore, Historic Landmarks database, where users information are stored, is insecure as users are able to retrieve not just their data but others' data from the database without due consent. Given such threats, Historic Landmarks is not attack-proof and warrants app users neither full privacy nor security of their data.</p> 
   </div>
   <div id ="issues">
     <h3>Issues Found</h3> 
@@ -30,10 +30,10 @@
         <b id="num">#1</b>
         <li>Issue: Cross Site Scripting (XSS)</li>
         <li>Location or page where issue was found: <b>/sendLocation</b> POST route on <a href="https://fathomless-eyrie-97751.herokuapp.com/">server</a></li>
-        <li>Severity of Issue: High. XSS presents users with all sorts of fraudulent web content including malicous code injection and unwanted messages. Significant amount of data stored as cookies can also be stolen. XSS also renders the app non-functional is most cases.</li>
-        <li>Description of issue: An attacker inputs data to execute a certain javascript function. For example, the shell command,<br><code id="_code">$ curl --data "login=&ltscript&gtalert('XSS ATTACK');&lt;/script&gt;&lat=10&lng=10" https://fathomless-eyrie-97751.herokuapp.com/sendLocation</code><br> alerts clients contrary to the app's purpose.</li>
+        <li>Severity of Issue: High. XSS presents users with all sorts of fraudulent web content including malicous code injection and unwanted messages. Significant amount of data stored as cookies can also be stolen. XSS also renders the app non-functional in most cases.</li>
+        <li>Description of issue: An attacker inputs data to execute a certain javascript function. For example, the shell command,<br><code id="_code">$ curl --data "login=&ltscript&gtalert('XSS ATTACK');&lt;/script&gt;&lat=10&lng=10" https://fathomless-eyrie-97751.herokuapp.com/sendLocation</code><br> alerts clients contrary to the app's intended purpose.</li>
         <li>Proof of vulnerability: <img src="xxs1.gif" alt="XXS"/></li>
-        <li>Resolution: Change &lt; to <code>&lt;</code> and &gt; to "&gt;". Alternatively, all special characters can be removed via the following command: in the example above, assuming "var login" holds login data, <br><code id="code">$ login.replace(/[^\w\s]/gi, '');</code><br></li>
+        <li>Resolution: All special characters can be removed via the following command: in the example above, assuming "var login" holds login data, <br><code>$ login.replace(/[^\w\s]/gi, '');</code><br></li>
     </ul>
     </p>
     <p>
@@ -41,11 +41,11 @@
         <b id="num">#2</b>
         <li>Issue: Mongo Database Injection and Client Security</li>
         <li>Location or page where issue was found: <b>/checkins.json</b> GET route on <a href="https://fathomless-eyrie-97751.herokuapp.com/">server</a></li>
-        <li>Severity of Issue: High. A database injection significantly impacts credibility that could lead to getting sued.</li>
-        <li>Description of issue: After I made a legitimate checkin into the web app via the login "oxy01", I searched for a login information via get using "login[$ne]=oxy01" and I got other clients'
+        <li>Severity of Issue: High. By revealing clients private data, a database injection significantly hampers credibility that could even lead to getting sued. Do I need to mention more?</li>
+        <li>Description of issue: After I made a legitimate checkin into the web app, I searched for a login information via get request to /checkings.json using "login[$ne]=name" as query string, and I got other clients'
  data</li>
         <li>Proof of vulnerability: <img id="imgs" src="mongodb_injection.gif" alt="MONGODB INJECTION"/></li>
-        <li>Resolution: Never Ever Trust User Data</li>
+        <li>Resolution: Never Ever Trust User Data. Use <code>$ JSON.parse()</code><br> or the validator package, eg. <code>$ if (!validator.contains(login, '$ne')) search_database</code></li>
     </ul>
     </p>
     <p>

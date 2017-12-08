@@ -27,3 +27,8 @@ body {
 .num {
         font-size: 24px;   
 }
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
