@@ -1,9 +1,10 @@
 # Assignment4: Security and Privacy Assessment of Client-Side and Server-Side (Assignments 2 and 3)
 updated December 7, 2017
 
-Assessment of the web application: [Heroku Landmarks](https://fathomless-eyrie-97751.herokuapp.com/).
+Assessment of Christian Zinck's web application: [Heroku Landmarks](https://fathomless-eyrie-97751.herokuapp.com/).
 
 # Implemented:
+`index.html` document with the following sections
 - Introduction
 - Methodology
 - Abstract of findings

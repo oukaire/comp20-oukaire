@@ -6,29 +6,33 @@ body {
         margin-right: 5%;
 }
 
-._code {
+#_code {
         font-style: italic;
         font-weight: bold;
 }
 
-.imgs {
+#imgs {
         width: device-width;
         border-right: 10%;
 }
 
-.imgs3 {
+#imgs3 {
         margin-left: 25%;
         margin-right: 25%;
-       /* width:1420px; 
+        width:1420px; 
         height:400px;
-        background:url(privacy_violation) 0px 0px; */
+        background:url(privacy_violation) 0px 0px;
 }
 
-.num {
+#num {
         font-size: 24px;   
 }
 
 li {
     display: list-item;
     text-align: -webkit-match-parent;
+}
+
+.ad {
+    font-weight: bold;    
 }

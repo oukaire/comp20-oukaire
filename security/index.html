@@ -51,22 +51,24 @@
     <p>
       <ul>
         <b id="num">#3</b>
-        <li>Issue: Privacy Violation</li>
+        <li>Issue: Privacy Violation and Sensitive Data Exposure</li>
         <li>Location or page where issue was found: <b>/</b> GET route on <a href="https://fathomless-eyrie-97751.herokuapp.com/">server</a></li>
-        <li>Severity of Issue: High. Heroku Landmarks reveals the username, latitude and longitude of clients without due permission. Random users are able to use others' login, latitude or longitude data. Robbers for instance, could locate people's addresses via their coordinates without consent of the victim.</li>
+        <li>Severity of Issue: High. Heroku Landmarks reveals the latitude and longitude of clients. Random users are able to get others' latitude and longitude coordinates. Robbers for instance, could locate a client's address via their coordinates without consent of the victim.</li>
         <li>Description of issue: On hitting the link to the homepage, users data are displayed.</li>
         <li>Proof of vulnerability: <img id="imgs3" src="privacy_violation.jpg" alt="PRIVACY_VIOLATION"/></li>
-        <li>Resolution: Do you render another user's data on the page. Delete code that parses database information to display clients' data on homepage.</li>
+        <li>Resolution: Do you render another user's data on the page. Simple delete code that parses database information to display clients' data on homepage.</li>
     </ul>
     </p>
   </div>
   <div id="conclusion">
     <h3>Conclusion</h3>
-    <p>Going forward, I will explore other <a href="https://www.owasp.org/index.php/Top_10_2013-Top_10">OWASP</a> treats and avoid them accordingly. Other possible tests to be done in the future include 
+    <p>Going forward, I will explore other <a href="https://www.owasp.org/index.php/Top_10_2013-Top_10">OWASP</a> treats and recommend to avoid them accordingly. For instance, it's a fair bet that the app is vulnerable to A10-Unvalidated Redirects and Forwards, where attackers can redirect victims to phishing or malware sites, or use forwards to access unauthorized pages. Other possible tests to be done in the future include 
       <ul>
-      <li>Run a infinite loop that populates entire database with "Never Ever Trust User Input."</li>
+      <li>Run a infinite loop that populates entire database with <b>Never Ever Trust User Input!</b></li>
       <li>Using Firefox's <a href="https://addons.mozilla.org/en-US/firefox/addon/966/">Tamper Data</a> plugin to change form fields, cookies and hidden fields.</li>
+      <li>Use web proxies to redirect input data, averting max character limits</li>
     </ul> 
+    I recommend that the app is taken and audited. Until it is secure-verified, it should remain retracted to avoid online harm to users.
   </p>
   </div>
   <div id="references">
@@ -75,6 +77,7 @@
       <li><a href="https://tuftsdev.github.io/WebProgramming/notes/web_security.html">Basic Web-security</li>
       <li><a href="https://www.owasp.org/index.php/Top_10_2013-Top_10">OWASP's Top Ten</li>
       <li><a href="http://ha.ckers.org/xss.html">Hackers</li>
+      <li><a href="https://github.com/chriso/validator.js">Validator Package</li>
     </ul>
   </div>
 </body>
