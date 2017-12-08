@@ -1,50 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1"/>
   <title>Ass4: Security</title>
+  <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
   <h1>Comp20: Web Programming</h1>
   <h2>Assignment 4: Security and Privacy Assessment of Client-Side and Server-Side</h2>
 
-  <div id="introduction">
+  <div id="intro">
       <h3>Introduction</h3>
-      <p>Historic Landmarks is a web application that renders a map to clients, displaying landmarks within a mile's radius and people checked in via the app. Historic Landmarks has both client-side and <a href="https://fathomless-eyrie-97751.herokuapp.com/">server-side</a> ends. Currently, it serves the New England region, ranging from Connecticut to New Hampshire. As a hired security consultant, I resolved three major security and privacy issues in the applications, and I document those issues on this page.</p>
+      <p>Historic Landmarks is a web application that renders a map to clients, showing both nearby people who also checked-in via the app and landmarks within a mile's radius from the user. Historic Landmarks has both client-side and <a href="https://fathomless-eyrie-97751.herokuapp.com/">server-side</a> ends. As a hired security consultant, I found and resolved a few major security and privacy issues on Heroku Landmarks web app. While I do share some of my findings and insight on this page, my analysis is at best incomplete, as I record only a handful of security and privacy concerns.</p>
   </div>
-  <div id="methodology">
+  <div id="meth">
     <h3>Methodology</h3> 
-     <p>The Open Web Application Security Project documents that 65% of web applications are vulnerable to a list of cyber attacks. Using OWASP's top ten basic security analysis, I hunt for security bridges in Historic Landmarks. In addition, I look for privacy bridges with regards to failure to conceal any client data including real names and latitude or/and longitude coordinates. Most of my injections</p>
+     <p>The Open Web Application Security Project documents that over 65% of web applications are vulnerable to a list of cyber attacks. Using OWASP's top ten basic security analysis, I hunt for security bridges in Historic Landmarks. In addition, I look for privacy issues with regards to failure to conceal any client data, including real names and coordinates. For sending data to Heroku Landmarks, I use the web browser for GET requests and curl for POST requests.</p>
   </div>
   <div id="abstract">
     <h3>Abstract of Findings</h3> 
-    <p>XSS</p> 
+    <p>Historic Landmarks is suceptible to injection attacks. Hackers are able hijack the app for other corrupt purposes by sending data to the app servers. Also, Historic Landmarks violates privacy concerns, displaying latitude and longitude data of clients on its home page.</p> 
   </div>
   <div id ="issues">
     <h3>Issues Found</h3> 
-    <ul>
+    <p>
+      <ul>
+        <b id="num">#1</b>
         <li>Issue: Cross Site Scripting (XSS)</li>
-        <li>Location or page where issue was found: "'/sendLocation'" post route on <a href="https://fathomless-eyrie-97751.herokuapp.com/">server</a></li>
-        <li>Severity of Issue: High. XSS presents users with all sorts of fraudulent web content including malicous code injection and unwanted messages. Significant amount of data stored as cookies can also be stolen.</li>
-        <li>Description of issue: An attacker inputs data to execute a certain javascript function. For example, the shell command, <div id="sh">$ curl --data "login=&ltscript&gtalert('XSS ATTACK');&lt/script&gt&lat=10&lng=10" https://fathomless-eyrie-97751.herokuapp.com/sendLocation"</div> alerts clients contrary to the app's purpose.</li>
-        <li>Proof of vulnerability: <img src="xx1.gif" alt="XXS"/></li>
-        <li>Resolution: Change &lt to "&lt" and &gt to "&gt". Alternatively, all special characters can be removed via the following command: in the example above, assuming "var login" holds login data, <div id="fix1">"$ login.replace(/[^\w\s]/gi, '');"</div></li>
+        <li>Location or page where issue was found: <b>/sendLocation</b> POST route on <a href="https://fathomless-eyrie-97751.herokuapp.com/">server</a></li>
+        <li>Severity of Issue: High. XSS presents users with all sorts of fraudulent web content including malicous code injection and unwanted messages. Significant amount of data stored as cookies can also be stolen. XSS also renders the app non-functional is most cases.</li>
+        <li>Description of issue: An attacker inputs data to execute a certain javascript function. For example, the shell command,<br><code id="_code">$ curl --data "login=&ltscript&gtalert('XSS ATTACK');&lt;/script&gt;&lat=10&lng=10" https://fathomless-eyrie-97751.herokuapp.com/sendLocation</code><br> alerts clients contrary to the app's purpose.</li>
+        <li>Proof of vulnerability: <img src="xxs1.gif" alt="XXS"/></li>
+        <li>Resolution: Change &lt; to <code>&lt;</code> and &gt; to "&gt;". Alternatively, all special characters can be removed via the following command: in the example above, assuming "var login" holds login data, <br><code id="code">$ login.replace(/[^\w\s]/gi, '');</code><br></li>
     </ul>
-    <ul>
-
+    </p>
+    <p>
+      <ul>
+        <b id="num">#2</b>
         <li>Issue: Mongo Database Injection and Client Security</li>
-        <li>Location or page where issue was found: "'/checkins.json'" get route on <a href="https://fathomless-eyrie-97751.herokuapp.com/">server</a></li>
+        <li>Location or page where issue was found: <b>/checkins.json</b> GET route on <a href="https://fathomless-eyrie-97751.herokuapp.com/">server</a></li>
         <li>Severity of Issue: High. A database injection significantly impacts credibility that could lead to getting sued.</li>
         <li>Description of issue: After I made a legitimate checkin into the web app via the login "oxy01", I searched for a login information via get using "login[$ne]=oxy01" and I got other clients'
  data</li>
-        <li>Proof of vulnerability: <img src="mongodb_injection.gif" alt="XXS"/></li>
-        <li>Resolution: "REPLACE CHARs PERHAPS"</li>
+        <li>Proof of vulnerability: <img id="imgs" src="mongodb_injection.gif" alt="MONGODB INJECTION"/></li>
+        <li>Resolution: Never Ever Trust User Data</li>
     </ul>
+    </p>
+    <p>
+      <ul>
+        <b id="num">#3</b>
+        <li>Issue: Privacy Violation</li>
+        <li>Location or page where issue was found: <b>/</b> GET route on <a href="https://fathomless-eyrie-97751.herokuapp.com/">server</a></li>
+        <li>Severity of Issue: High. Heroku Landmarks reveals the username, latitude and longitude of clients without due permission. Random users are able to use others' login, latitude or longitude data. Robbers for instance, could locate people's addresses via their coordinates without consent of the victim.</li>
+        <li>Description of issue: On hitting the link to the homepage, users data are displayed.</li>
+        <li>Proof of vulnerability: <img id="imgs3" src="privacy_violation.jpg" alt="PRIVACY_VIOLATION"/></li>
+        <li>Resolution: Do you render another user's data on the page. Delete code that parses database information to display clients' data on homepage.</li>
+    </ul>
+    </p>
   </div>
   <div id="conclusion">
     <h3>Conclusion</h3>
+    <p>Going forward, I will explore other <a href="https://www.owasp.org/index.php/Top_10_2013-Top_10">OWASP</a> treats and avoid them accordingly. Other possible tests to be done in the future include 
+      <ul>
+      <li>Run a infinite loop that populates entire database with "Never Ever Trust User Input."</li>
+      <li>Using Firefox's <a href="https://addons.mozilla.org/en-US/firefox/addon/966/">Tamper Data</a> plugin to change form fields, cookies and hidden fields.</li>
+    </ul> 
+  </p>
   </div>
   <div id="references">
     <h3>References</h3>
+    <ul>
+      <li><a href="https://tuftsdev.github.io/WebProgramming/notes/web_security.html">Basic Web-security</li>
+      <li><a href="https://www.owasp.org/index.php/Top_10_2013-Top_10">OWASP's Top Ten</li>
+      <li><a href="http://ha.ckers.org/xss.html">Hackers</li>
+    </ul>
   </div>
 </body>
 </html>

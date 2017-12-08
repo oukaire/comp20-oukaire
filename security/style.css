@@ -1,0 +1,29 @@
+
+body {
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 18px;
+        margin-left: 5%;
+        margin-right: 5%;
+}
+
+._code {
+        font-style: italic;
+        font-weight: bold;
+}
+
+.imgs {
+        width: device-width;
+        border-right: 10%;
+}
+
+.imgs3 {
+        margin-left: 25%;
+        margin-right: 25%;
+       /* width:1420px; 
+        height:400px;
+        background:url(privacy_violation) 0px 0px; */
+}
+
+.num {
+        font-size: 24px;   
+}
