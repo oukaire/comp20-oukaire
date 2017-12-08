@@ -17,11 +17,8 @@ body {
 }
 
 #imgs3 {
-        margin-left: 25%;
         margin-right: 25%;
-        width:1420px; 
-        height:400px;
-        background:url(privacy_violation) 0px 0px;
+        width: device-width;
 }
 
 #num {

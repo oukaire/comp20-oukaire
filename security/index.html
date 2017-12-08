@@ -45,7 +45,8 @@
         <li>Description of issue: After I made a legitimate checkin into the web app, I searched for a login information via get request to /checkings.json using "login[$ne]=name" as query string, and I got other clients'
  data</li>
         <li>Proof of vulnerability: <img id="imgs" src="mongodb_injection.gif" alt="MONGODB INJECTION"/></li>
-        <li>Resolution: Never Ever Trust User Data. Use <code>$ JSON.parse()</code><br> or the validator package, eg. <code>$ if (!validator.contains(login, '$ne')) search_database</code></li>
+        <li>Resolution: Never Ever Trust User Data. To fix, use the mongo-sanitize package: <br/><code>var sanitize = require('mongo-sanitize');<br/>app.get('/checkins.json', function (req, res) {<br/> &nbsp; &nbsp;var query = {<br/>&nbsp; &nbsp; &nbsp; &nbsp;login: sanitize(req.query.login;<br/>&nbsp; &nbsp; &nbsp; &nbsp;...<br/>&nbsp; &nbsp; &nbsp; &nbsp;...<br/>&nbsp; &nbsp; &nbsp; &nbsp;...<br/>&nbsp; &nbsp;}<br/>
+        <p>&nbsp; &nbsp;db.collection('users').findOne(query, function (err, user) { });<br/>});</p></code></li>
     </ul>
     </p>
     <p>
@@ -78,6 +79,7 @@
       <li><a href="https://www.owasp.org/index.php/Top_10_2013-Top_10">OWASP's Top Ten</li>
       <li><a href="http://ha.ckers.org/xss.html">Hackers</li>
       <li><a href="https://github.com/chriso/validator.js">Validator Package</li>
+      <li><a href="https://www.synopsys.com/blogs/software-security/preventing-common-mean-stack-vulnerabilities/">NoSQL Database and Software Integrity</li>
     </ul>
   </div>
 </body>
